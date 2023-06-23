@@ -6,31 +6,36 @@ import Notification from "./Notification/Notification";
 
 
   const App = () => {
-    const [state, setState] = useState({
-        good: 0,
-        neutral: 0,
-        bad: 0
-      });
-      //const [options, setOptions] = useState(["good", "neutral", "bad"])
+    const [good, setGood] = useState(0);
+    const [neutral, setNeutral] = useState(0);
+    const [bad, setBad] = useState(0);
+    //const [state, setState] = useState({
+        //good: 0,
+        //neutral: 0,
+       // bad: 0
+      //});
+
       const onHandleClick = (option) => {
-        if(option === 'good') setState(prev => ({
-          ...prev, [option]:
-          prev[option] + 1
-        }))
-        if(option === 'neutral') setState(prev => ({
-          ...prev, [option]:
-          prev[option] + 1
-        }))
-        if(option=== 'bad') setState(prev => ({
-          ...prev, [option]:
-          prev[option] + 1
-        }))
+        if(option === 'good') setGood(prev => prev + 1)
+        //setState(prev => ({
+         // ...prev, [option]:
+         // prev[option] + 1 }))
+        if(option === 'neutral') setNeutral(prev => prev + 1)
+        //setState(prev => ({
+          //...prev, [option]:
+         // prev[option] + 1 }))
+        if(option=== 'bad') setBad(prev => prev + 1)
+        //setState(prev => ({
+         // ...prev, [option]:
+         // prev[option] + 1 }))
     }
       const countTotalFeedback = () => {
-      return parseFloat(state.good + state.neutral + state.bad)
+      //return parseFloat(state.good + state.neutral + state.bad)
+      return parseFloat(good + neutral + bad)
     }
       const countPositiveFeedbackPercentage = () => {
-      const result = parseFloat((state.good / (state.good + state.neutral + state.bad)) * 100);
+      //const result = parseFloat((state.good / (state.good + state.neutral + state.bad)) * 100);
+      const result = parseFloat((good / (good + neutral + bad)) * 100)
       return result.toFixed(0);
     }
       return (
@@ -49,9 +54,9 @@ import Notification from "./Notification/Notification";
           message = 'There is no feedback'/>
         ) : (
         <Statistics
-        good={state.good}
-        neutral={state.neutral}
-        bad={state.bad}
+        good={good}//{state.good}
+        neutral={neutral}//{state.neutral}
+        bad={bad}//{state.bad}
         total={countTotalFeedback()}
         positivePercentage = {countPositiveFeedbackPercentage()}
         />
